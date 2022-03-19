@@ -1,8 +1,4 @@
-import 'dart:ffi';
 import 'package:flutter/material.dart';
-// import 'package:firebase_core/firebase_core.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:windsurfing/login_page.dart';
 import 'constants.dart';
@@ -13,16 +9,14 @@ void main() async {
   runApp(MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Wind',
+      title: 'WindSurfing',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         primaryColor: Colors.redAccent,
-        // scaffoldBackgroundColor: Color(0xFF194B97),
       ),
       home: const HomePage(),
     );
@@ -50,22 +44,16 @@ class _HomePageState extends State<HomePage> {
         child: Center(
           child: Column(
             children: const [
-              SizedBox(
-                height: 90,
-              ),
+              SizedBox(height: 90),
               title_design(
                 text: 'ログイン画面',
               ),
-              SizedBox(
-                height: 70,
-              ),
+              SizedBox(height: 70),
               Text(
                 '大会情報',
                 style: kTextSizeTitle,
               ),
-              SizedBox(
-                height: 50,
-              ),
+              SizedBox(height: 50),
               main_button(text: '過去の大会'),
               main_button(text: '登録済の大会'),
               main_button(text: '大会に参加する'),

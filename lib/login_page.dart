@@ -3,10 +3,53 @@ import 'package:windsurfing/title_design.dart';
 import 'constants.dart';
 
 class login_page extends StatelessWidget {
-  const login_page({Key? key}) : super(key: key);
+
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    //email Field
+    final emailField = TextFormField(
+        autofocus: false,
+        controller: emailController,
+        keyboardType: TextInputType.emailAddress,
+        onSaved: (value) {
+          emailController.text = value!;
+        },
+        textInputAction: TextInputAction.next,
+        decoration: InputDecoration(
+          prefixIcon: Icon(Icons.mail),
+          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Email",
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+        ));
+
+    //password field
+    final passwordField = TextFormField(
+        autofocus: false,
+        controller: passwordController,
+        onSaved: (value) {
+          passwordController.text = value!;
+        },
+        textInputAction: TextInputAction.done,
+        decoration: InputDecoration(
+          prefixIcon: const Icon(Icons.vpn_key),
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Password",
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+        ));
+
+    final loginButton = Material(
+      elevation: 5,
+      borderRadius: BorderRadius.circular(30),
+    );
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -16,46 +59,22 @@ class login_page extends StatelessWidget {
           Color(0xff0066FF),
         ])),
         child: Center(
-          child: Column(
-            children: [
-              const SizedBox(height: 90),
-              const title_design(
-                text: 'ログイン画面',
-              ),
-              const SizedBox(height: 70),
-              const Text(
-                'ID',
-                style: kTextSizeSub,
-              ),
-              Container(
-                // padding: EdgeInsets.all(10),
-                decoration: const BoxDecoration(
-                    border: Border(bottom: BorderSide(color: Colors.grey))),
-                child: const TextField(
-                  decoration: InputDecoration(
-                    hintText: "Email or Phone number",
-                    hintStyle: TextStyle(color: Colors.white),
-                    border: InputBorder.none,
-                  ),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(36),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    emailField,
+                    const SizedBox(height:45),
+                    passwordField,
+                  ],
                 ),
               ),
-              const Text(
-                'PASSWORD',
-                style: kTextSizeSub,
-              ),
-              Container(
-                // padding: EdgeInsets.all(10),
-                decoration: const BoxDecoration(
-                    border: Border(bottom: BorderSide(color: Colors.grey))),
-                child: const TextField(
-                  decoration: InputDecoration(
-                    hintText: "Email or Phone number",
-                    hintStyle: TextStyle(color: Colors.white),
-                    border: InputBorder.none,
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),

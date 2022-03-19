@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'login_page.dart';
 
 class main_button extends StatelessWidget {
-  //required this.onPressed を事後入力
-  // ignore: use_key_in_widget_constructors
+
+  //required this.onPressed 入力
   const main_button({required this.text});
 
   final String text;
-
   // final Function onPressed;
 
   @override
